@@ -28,20 +28,16 @@ angular.module('starter', ['ionic'])
 
   // init data
   $scope.m = "hello" ;
+  $scope.LastFeedbackposition = null ; 
+
   $scope.slide = {
     id:1,
     src:'https://s-media-cache-ak0.pinimg.com/736x/2e/ce/59/2ece5901e8f892a44806771659d3b8b5--doggy-clothes-chihuahua-clothes.jpg',
     feedbacks:[
-      {id:1,position:{x:10,y:10}},
-      {id:2,position:{x:100,y:10}}
+      {id:1,position:{x:10,y:10},name:'item-1',price:'50$'},
+      
     ]
   }
-
- 
-  
-  
-
-  
 
  // create random id
  var getRandomId =  function (length_) {
@@ -55,7 +51,7 @@ angular.module('starter', ['ionic'])
             str += chars[Math.floor(Math.random() * chars.length)];
         }
         return str;
-    }
+}
  
  
  
@@ -63,26 +59,51 @@ angular.module('starter', ['ionic'])
 
  // add feedback tag on image
  $scope.addFeedback = function($event) {
-    
+
+    // init form object 
+    $scope.newFeedback = null ; 
+
+    // show modal
+    $scope.modal.show() ; 
+
     console.log('adding feedback');
-      if ($event.target.className === $event.currentTarget.className) {
-        var feedbackPosition = {
-          x: ((($event.offsetX) / $event.currentTarget.clientWidth) * 100).toFixed(2),
-          y: ((($event.offsetY) / $event.currentTarget.clientHeight) * 100).toFixed(2)
-        };
+    if ($event.target.className === $event.currentTarget.className) {
+      var feedbackPosition = {
+        x: ((($event.offsetX) / $event.currentTarget.clientWidth) * 100).toFixed(2),
+        y: ((($event.offsetY) / $event.currentTarget.clientHeight) * 100).toFixed(2)
+      };
 
-        
-
-        //for demo purposes
-        var newFeedbackId = getRandomId(5);
-         $scope.slide.feedbacks.push({
-          id: newFeedbackId,
-          position: feedbackPosition,
-        });
-
-        
-      }
+      // store last feedback position 
+      $scope.LastFeedbackposition = feedbackPosition ; 
+      
+      
     }
+}
+
+
+
+// modal
+ $ionicModal.fromTemplateUrl('templates/modal.html', {
+    scope: $scope
+  }).then(function(modal) {
+    console.log('modal created'); 
+    $scope.modal = modal;
+    
+  });
+  
+  $scope.addNewFeedback = function(newFeedback) { 
+
+    console.log('scope',$scope.slide)       
+    
+  var newFeedbackId = getRandomId(5);
+   $scope.slide.feedbacks.push({
+          id: newFeedbackId,
+          position: $scope.LastFeedbackposition,
+          name:newFeedback.name,
+          price:newFeedback.price,
+   });
+    $scope.modal.hide();
+  };
 
    
 
