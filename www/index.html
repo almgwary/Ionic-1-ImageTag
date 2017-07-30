@@ -52,7 +52,9 @@
 
               <div class="screenviewer-feedback-container" id="feedback-{{slide.id}}-{{feedback.id}}"
                   ng-repeat="feedback in slide.feedbacks track by feedback.id"
-                  ng-style="{left:feedback.position.x+'%', top:feedback.position.y+'%'}">  
+                  ng-style="{left:feedback.position.x+'%', top:feedback.position.y+'%'}"
+                  ng-click="deleteFeedback(feedback)"
+                   >  
                 <md-menu md-offset="40px 15px">
                   <span class="screenviewer-feedback-chip"
                         ng-click="$mdOpenMenu($event)">{{$index+1}}</span>
@@ -78,7 +80,7 @@
   <script id="templates/modal.html" type="text/ng-template">
       <ion-modal-view>
         <ion-header-bar class="bar bar-header bar-positive">
-          <h1 class="title">New Contact</h1>
+          <h1 class="title">New Feedback</h1>
           <button class="button button-clear button-primary" ng-click="modal.hide()">Cancel</button>
         </ion-header-bar>
         <ion-content class="padding">

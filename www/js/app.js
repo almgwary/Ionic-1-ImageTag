@@ -106,5 +106,12 @@ angular.module('starter', ['ionic'])
     };
 
 
+    // delete feedback
+    $scope.deleteFeedback  =  function(feedback){
+        $scope.slide.feedbacks  = $scope.slide.feedbacks.filter(function(_feedback){
+            return _feedback.id != feedback.id
+        })
+    }
+
 
   });
