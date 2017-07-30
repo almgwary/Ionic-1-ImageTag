@@ -34,11 +34,36 @@
   </head>
   <body ng-app="starter">
 
-    <ion-pane>
+    <ion-pane  ng-controller="AppCtrl">
       <ion-header-bar class="bar-stable">
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
-      <ion-content>
+      <ion-content >
+          {{m}}
+    
+    <div id="screenviewer">
+      
+       <div id="screenviewer-slider" class="layout-fill" >
+          <div class="screenviewer-slide screenviewer-slide-animation" >
+
+            <div class="screenviewer-slide-wrapper" >
+              <img class="screenviewer-slide-image" ng-src="{{slide.src}}"
+                  ng-click="addFeedback($event, slide.id)">
+
+              <div class="screenviewer-feedback-container" id="feedback-{{slide.id}}-{{feedback.id}}"
+                  ng-repeat="feedback in slide.feedbacks track by feedback.id"
+                  ng-style="{left:feedback.position.x+'%', top:feedback.position.y+'%'}">  
+                <md-menu md-offset="40px 15px">
+                  <span class="screenviewer-feedback-chip"
+                        ng-click="$mdOpenMenu($event)">{{$index+1}}</span>
+                </md-menu>
+              </div>
+            </div>
+          </div>
+     </div>
+ 
+    
+
       </ion-content>
     </ion-pane>
   </body>

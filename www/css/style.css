@@ -1,1 +1,44 @@
 /* Empty. Add your own CSS if you like */
+#screenviewer-slider {
+  /*overflow: scroll;*/
+  position: relative;
+  display: block;
+  height: 70vh;
+}
+#screenviewer-slider .screenviewer-slide {
+  position: absolute;
+  width: inherit;
+  height: inherit;
+  display: flex;
+}
+#screenviewer-slider .screenviewer-slide .screenviewer-slide-image-wrapper {
+  margin: auto;
+  max-width: 100%;
+}
+#screenviewer-slider .screenviewer-slide .screenviewer-slide-wrapper {
+  margin: auto;
+  max-width: 100%;
+  position: relative;
+}
+#screenviewer-slider .screenviewer-slide .screenviewer-slide-wrapper .screenviewer-slide-image {
+  object-fit: contain;
+}
+#screenviewer-slider .screenviewer-slide .screenviewer-slide-wrapper .screenviewer-feedback-container {
+  position: absolute;
+  margin: -15px;
+}
+#screenviewer-slider .screenviewer-slide .screenviewer-slide-wrapper .screenviewer-feedback-container .screenviewer-feedback-chip {
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  line-height: 21px;
+  background-color: #ec6450;
+  box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 50%;
+  border: solid 3px #ffffff;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  padding-top: 1px;
+}
+
